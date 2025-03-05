@@ -11,6 +11,7 @@ export interface Payment {
     amount: string;
 }
 
+
 export const mercadopago = new MercadoPagoConfig({accessToken: process.env.MP_ACCESS_TOKEN!});
 
 const api = {
