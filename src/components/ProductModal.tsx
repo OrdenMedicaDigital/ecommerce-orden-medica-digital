@@ -171,8 +171,8 @@ export function ProductModal() {
         <Flex 
           className="product-modal loading" 
           direction="column" 
-          align="center" 
-          justify="center"
+          vertical="center" 
+          horizontal="center"
           padding="8"
         >
           <Heading>Loading...</Heading>
@@ -188,8 +188,8 @@ export function ProductModal() {
         <Flex 
           className="product-modal error" 
           direction="column" 
-          align="center" 
-          justify="center"
+          vertical="center" 
+          horizontal="center"
           padding="8"
         >
           <Heading color="error">Product not found</Heading>
@@ -214,14 +214,14 @@ export function ProductModal() {
         <Card fillWidth radius="l" shadow="xl" overflow="hidden">
           <Button 
             variant="tertiary" 
-            size="icon-s" 
+            size="s" 
             onClick={handleClose}
             className="modal-close-button"
             prefixIcon="close"
           />
           
           <Flex direction="column" className="product-modal-content">
-            <Flex width="100%" height="200px" position="relative">
+            <Flex fillWidth height="160" position="relative">
               {product.image && (
                 <Image 
                   src={product.image} 
@@ -247,7 +247,7 @@ export function ProductModal() {
               )}
             </Flex>
             
-            <Flex direction="column" padding="6" gap="4">
+            <Flex direction="column" padding="8" gap="4">
               <Heading variant="heading-strong-xl">{product.title}</Heading>
               
               <Text variant="body-default-m" color="secondary">
@@ -256,11 +256,11 @@ export function ProductModal() {
               
               <Flex className="mb-3" wrap gap="2">
                 {product.examsIncluded?.map((exam: string, index: number) => (
-                  <Badge key={index} variant="info">{exam}</Badge>
+                  <Badge key={index}>{exam}</Badge>
                 ))}
               </Flex>
               
-              <Flex align="center" gap="3" className="mt-auto">
+              <Flex vertical="center" gap="4" className="mt-auto">
                 {product.discount > 0 && (
                   <Text 
                     variant="body-default-l" 

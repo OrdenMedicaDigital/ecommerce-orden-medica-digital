@@ -49,7 +49,7 @@ export function ProductGrid() {
 
   if (error) {
     return (
-      <Flex justify="center" align="center" paddingY="16">
+      <Flex horizontal="center" vertical="center" paddingY="16">
         <Text color="error">{error}</Text>
       </Flex>
     );
