@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define view transitions */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Product modal styles */
+.product-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+  animation: fade-in 0.3s ease-out;
+  view-transition-name: modal-backdrop;
+  pointer-events: auto;
+}
+
+.product-modal {
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  margin: 0 auto 1rem;
+  overflow-y: auto;
+  border-radius: 1rem 1rem 0 0;
+  animation: slide-up 0.3s ease-out;
+  view-transition-name: modal;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+}
+
+/* Price discount styles */
+.price-discount {
+  position: relative;
+  display: inline-block;
+  line-height: 28px !important;
+}
+
+.price-discount::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.85);
+  transform: translateY(-50%) rotate(-15deg);
+  z-index: 1;
+}
+
+/* Cart Badge Styles */
+.cart-badge-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+}
+
+.cart-badge-button {
+  min-width: 180px;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.cart-badge-count {
+  color:black;
+  min-width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  margin-left: 0.5rem;
+}
+
+/* View Transitions API support */
+@supports (view-transition-name: none) {
+  .product-modal-backdrop {
+    view-transition-name: modal-backdrop;
+  }
+  
+  .product-modal {
+    view-transition-name: modal;
+  }
+
+  ::view-transition-old(modal-backdrop) {
+    animation: fade-in 0.3s reverse;
+  }
+  
+  ::view-transition-new(modal-backdrop) {
+    animation: fade-in 0.3s;
+  }
+
+  ::view-transition-old(modal) {
+    animation: slide-up 0.3s reverse;
+  }
+  
+  ::view-transition-new(modal) {
+    animation: slide-up 0.3s;
+  }
+}
+
+html.has-modal-open {
+  overflow: hidden;
+}
